@@ -1,0 +1,4 @@
+program_code,program_name,program_desc,degree_type,dept_id,program_coordinator,total_units,status
+BSCS,Computer Science,,Bachelor's,1,,64,active
+BSIT,Information Technology,,Bachelor's,1,,60,active
+BSBA,Business Administration,,Bachelor's,2,,62,active

@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+}
+
+.app-logo {
+    width: 13rem;
+}
+
+h1 {
+    color: red;
+}
+
+.toggle-password {
+    position: absolute;
+    right:0.5rem; 
+    top:0.5rem; 
+    color: #D1D5DB; 
+    stroke-width:0.3
+}
+
+.login-link-to-register {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.searchbar {
+    width: 18rem;
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
+}
+
+.input-icon {
+    position: absolute;
+    right: 0.5rem; /* Adjust based on the exact size and padding of your input */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-sizing: border-box; /* Ensures padding is included in total width/height */
+}
+
+th, td {
+    text-align: left;
+    padding: 12px 16px; /* Adjust padding as needed but keep it consistent */
+    box-sizing: border-box; /* Ensures padding is included in total width/height */
+    vertical-align: middle; /* Aligns content vertically in the middle of the cell */
+}
+
+thead th {
+    background-color: #8ed2ff; /* Adjust background color as needed */
+    font-family: Arial, sans-serif; /* Use the same font family for th and td */
+    font-size: 14px; /* Use the same font size for th and td */
+    font-weight: bold; /* Optional: if you want bold headers */
+}
+
+tbody td {
+    font-family: Arial, sans-serif; /* Use the same font family for th and td */
+    font-size: 14px; /* Use the same font size for th and td */
+    border-bottom: 1px solid #ddd; /* Optional: if you want a border between rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Optional: if you want zebra striping */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Optional: if you want a hover effect */
+}
+
+.paginator-active {
+    color: #75C6FC;
+    font-weight: 800;
+}
+
+.student-information
+{
+    width:100%;
+    display: flex;
+}
+
+.student-prof-pic {
+    width: 18%;
+    border: 3px solid blue;
+}
+
+.student-info-details
+{
+    padding: 0.3rem;
+    width: 100%;
+    border: 2px solid greenyellow;
+}
