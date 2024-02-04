@@ -6,7 +6,7 @@
                 {{ __('Student Records') }}
             </h2>
             <div class="flex items-center space-x-4">
-            <form action="/search" method="GET" id="searchForm">
+            <form action="/admin/student-records" method="GET" id="searchForm">
                 <div class="relative flex">
                     <x-text-input 
                         class="h-6 center-placeholder searchbar" 
@@ -19,7 +19,7 @@
                         <x-css-search />
                     </button>
                 </div>
-            </form>                
+            </form>              
             </div>
         </div>
     </x-slot>
