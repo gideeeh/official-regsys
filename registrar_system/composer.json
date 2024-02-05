@@ -13,7 +13,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "league/csv": "^9.14"
+        "league/csv": "^9.14",
+        "ryangjchandler/blade-tabler-icons": "^2.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

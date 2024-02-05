@@ -2,16 +2,16 @@
     <x-app-layout>
         <x-slot name="header">
             <div class="flex justify-between items-center h-10">
-                <a href="{{ route('student-records') }}" class="font-semibold text-xl text-gray-800 leading-tight no-underline hover:underline">
-                    {{ __('Student Records') }}
+                <a href="{{ route('faculty-records') }}" class="font-semibold text-xl text-gray-800 leading-tight no-underline hover:underline">
+                    {{ __('Faculty Records') }}
                 </a>
                 <div class="flex items-center space-x-4">
-                    <form action="/admin/student-records" method="GET" id="searchForm" x-ref="searchForm">
+                    <form action="/admin/faculty-records" method="GET" id="searchForm" x-ref="searchForm">
                         <div class="relative flex">
                             <x-text-input 
                                 class="h-6 center-placeholder searchbar" 
                                 name="query" 
-                                placeholder="Search Student" 
+                                placeholder="Search Faculty" 
                                 autocomplete="off"
                                 spellcheck="false"
                                 maxlength="38"
@@ -35,32 +35,28 @@
         <div class="stu-records py-6 max-h-full">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="overflow-hidden sm:rounded-lg shadow-sm">
+                <div class="overflow-hidden sm:rounded-lg shadow-sm">
                         <table class="min-w-full">
                             <thead >
                                 <tr class="cursor-default">
-                                    <th class="px-6 py-3 text-left">Student Number</th>
                                     <th class="px-6 py-3 text-left">First Name</th>
                                     <th class="px-6 py-3 text-left">Last Name</th>
-                                    <th class="px-6 py-3 text-left">Course</th>
-                                    <th class="px-6 py-3 text-left">Year Level</th>
+                                    <th class="px-6 py-3 text-left">Department Name</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($students as $student)
-                                <tr class="border-b hover:bg-gray-100" x-data="{}" @click="window.location.href='{{ route('student-records.show', $student->student_id) }}'" style="cursor: pointer;">
-                                    <td class="px-6 py-4 text-left">{{$student->student_number}}</td>
-                                    <td class="px-6 py-4 text-left">{{$student->first_name}}</td>
-                                    <td class="px-6 py-4 text-left">{{$student->last_name.' '.$student->suffix}}</td>
-                                    <td class="px-6 py-4 text-left">{{$student->program_code}}</td>
-                                    <td class="px-6 py-4 text-left">{{$student->year_level}}</td>
+                            @foreach ($professors as $professor)
+                                <tr class="border-b hover:bg-gray-100" x-data="{}" @click="window.location.href='{{ route('faculty-records.show', $professor->prof_id) }}'" style="cursor: pointer;">
+                                    <td class="px-6 py-4 text-left">{{$professor->first_name}}</td>
+                                    <td class="px-6 py-4 text-left">{{$professor->last_name.' '.$professor->suffix}}</td>
+                                    <td class="px-6 py-4 text-left">{{$professor->dept_name}}</td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="mt-4">
-                        {{ $students->links() }}
+                        {{ $professors->links() }}
                     </div>
                 </div>
             </div>

@@ -15,9 +15,33 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('student-records')" :active="request()->routeIs(['student-records','student-records.show'])">
-                        {{ __('Records') }}
-                    </x-nav-link>
+                    <div @mouseover="open = true" @mouseleave="open = false" class="relative sm:flex sm:items-center">
+                        <x-nav-link 
+                            class="sm:flex sm:items-center h-full" 
+                            :href="route('student-records')" 
+                            :active="request()->routeIs([
+                                'student-records',
+                                'faculty-records',
+                                'course-listings',
+                                'student-records.show',
+                                'faculty-records.show',
+                                'course-listings.show',
+                                ])">
+                            {{ __('Records') }}
+                        </x-nav-link>
+                        <div x-show="open" class="dropdown-content absolute bg-white shadow-md" x-cloak>
+                            <!-- Dropdown links -->
+                            <x-dropdown-link :href="route('student-records')">
+                                        {{ __('Student Records') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('faculty-records')">
+                                        {{ __('Faculty Records') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('course-listings')">
+                                        {{ __('Course Listings') }}
+                            </x-dropdown-link>
+                        </div>
+                    </div>
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Enrollments') }}
                     </x-nav-link>
@@ -35,7 +59,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -87,7 +111,7 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 

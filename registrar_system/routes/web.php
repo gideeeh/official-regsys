@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\CourseListingsController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\FacultyRecordsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentRecordsController;
 use App\Http\Controllers\SubjectController;
@@ -48,14 +50,11 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
     Route::get('/admin/student-records', [StudentRecordsController::class, 'index'])->name('student-records');
     Route::get('/admin/student-records/{student}', [StudentRecordsController::class, 'show'])->name('student-records.show');
 
-    Route::get('/admin/faculty-records', function () {
-        return view('admin.faculty-records');
-    })->name('faculty-records');
+    Route::get('/admin/faculty-records', [FacultyRecordsController::class, 'index'])->name('faculty-records');
+    Route::get('/admin/faculty-records/{faculty}', [FacultyRecordsController::class, 'show'])->name('faculty-records.show');
     
-    Route::get('/admin/course-listings', function () {
-        return view('admin.course-listings');
-    })->name('course-listings');
-
+    Route::get('/admin/course-listings', [CourseListingsController::class, 'index'])->name('course-listings');
+    Route::get('/admin/course-listings/{course}', [CourseListingsController::class, 'show'])->name('course-listings.show');
 });
 
 require __DIR__.'/auth.php';

@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Enrollment;
+use Illuminate\Http\Request;
+
+class EnrollmentsController extends Controller
+{
+    public function index (Request $request)
+    {
+        $query = Enrollment::query()
+            ->select(
+                'enrollments.academic_year', 
+                'enrollments.term', 
+                'enrollments.year_level',
+                'enrollments.is_Continuing',
+                'enrollments.enrollment_date',
+                'students.student_number',
+                'students.first_name', 
+                'students.last_name',
+                'students.suffix',
+                'programs.program_code',
+            )
+            ->join('programs', 'programs.program_id', '=', 'enrollments.program_id')
+            ->join('students', 'enrollments.student_id', '=', 'students.student_id');
+            
+        $searchTerm = $request->query('query');
+        if($searchTerm)
+        {
+            $query->where(function($query) use ($searchTerm) {
+                $query->where('students.first_name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('students.last_name', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('students.student_number', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('programs.program_code', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $enrollmentRecords = $query->paginate(10)->withQueryString();
+
+        return view('admin.enrollment-records', [
+            'enrollments' => $enrollmentRecords,
+            'searchTerm' => $searchTerm
+        ]);
+    }
+}
