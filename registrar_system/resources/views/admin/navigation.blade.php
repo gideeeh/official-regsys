@@ -29,7 +29,12 @@
                                 ])">
                             {{ __('Records') }}
                         </x-nav-link>
-                        <div x-show="open" class="dropdown-content absolute bg-white shadow-md" x-cloak>
+                        <div class="dropdown-content absolute bg-white shadow-md" 
+                            x-cloak 
+                            x-show="open"
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="opacity-0 transform scale-90"
+                            x-transition:enter-end="opacity-100 transform scale-100">
                             <!-- Dropdown links -->
                             <x-dropdown-link :href="route('student-records')">
                                         {{ __('Student Records') }}
@@ -42,7 +47,7 @@
                             </x-dropdown-link>
                         </div>
                     </div>
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link :href="route('enrollment-records')" :active="request()->routeIs('enrollment-records')">
                         {{ __('Enrollments') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">

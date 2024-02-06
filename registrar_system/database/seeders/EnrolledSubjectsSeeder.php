@@ -14,7 +14,7 @@ class EnrolledSubjectsSeeder extends Seeder
      */
     public function run(): void
     {
-        $csvFilePath = database_path('seeds/sample_enrolled_subjects_seeder.csv');
+        $csvFilePath = database_path('seeds/sample_enrolled_subjects_seeder_v2.csv');
         $csv = Reader::createFromPath($csvFilePath, 'r');
         $csv->setHeaderOffset(0);
 
@@ -24,7 +24,7 @@ class EnrolledSubjectsSeeder extends Seeder
                 'enrollment_id' => $record['enrollment_id'],
                 'subject_id' => $record['subject_id'],
                 'section_id' => $record['section_id'],
-                'final_grade' => $record['final_grade'],
+                'final_grade' => $record['final_grade'] === '' || $record['final_grade'] === 'NULL' ? null : $record['final_grade'],
             ]);
         }
         

@@ -11,6 +11,7 @@ class EnrollmentsController extends Controller
     {
         $query = Enrollment::query()
             ->select(
+                'enrollments.enrollment_id', 
                 'enrollments.academic_year', 
                 'enrollments.term', 
                 'enrollments.year_level',
@@ -42,5 +43,12 @@ class EnrollmentsController extends Controller
             'enrollments' => $enrollmentRecords,
             'searchTerm' => $searchTerm
         ]);
+    }
+
+    public function show($enrollment_id)
+    {
+        $enrollmentRecord = Enrollment::findOrFail($enrollment_id);
+        
+        return view('admin.indiv-enrollment-record', ['enrollment' => $enrollmentRecord]);
     }
 }

@@ -5,30 +5,7 @@
                 <a href="{{ route('course-listings') }}" class="font-semibold text-xl text-gray-800 leading-tight no-underline hover:underline">
                     {{ __('Course Listings') }}
                 </a>
-                <div class="flex items-center space-x-4">
-                    <form action="{{ route('course-listings') }}" method="GET" id="searchForm" x-ref="searchForm">
-                        <div class="relative flex">
-                            <x-text-input 
-                                class="h-6 center-placeholder searchbar" 
-                                name="query" 
-                                placeholder="Search Course" 
-                                autocomplete="off"
-                                spellcheck="false"
-                                maxlength="38"
-                                x-model="searchTerm" /> <!-- Bind input to searchTerm using x-model -->
-
-                            <!-- Show search icon when searchTerm is empty -->
-                            <button type="submit" class="input-icon" x-show="!searchTerm">
-                                <x-css-search />
-                            </button>
-
-                            <!-- Show clear icon when searchTerm is not empty -->
-                            <div x-show="searchTerm" @click.prevent="searchTerm = ''; $nextTick(() => $refs.searchForm.dispatchEvent(new Event('submit')));" class="input-icon" style="cursor: pointer;">
-                                <x-tabler-x />
-                            </div>
-                        </div>
-                    </form>              
-                </div>
+                <x-search-form action="{{ route('course-listings') }}" placeholder="Search Course" />
             </div>
         </x-slot>
 

@@ -54,4 +54,9 @@ class Student extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function latestEnrollment()
+    {
+        return $this->hasOne(Enrollment::class, 'student_id')->latest();
+    }
 }

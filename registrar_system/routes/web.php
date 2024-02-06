@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\CourseListingsController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\EnrollmentsController;
 use App\Http\Controllers\FacultyRecordsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentRecordsController;
@@ -55,6 +56,9 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
     
     Route::get('/admin/course-listings', [CourseListingsController::class, 'index'])->name('course-listings');
     Route::get('/admin/course-listings/{course}', [CourseListingsController::class, 'show'])->name('course-listings.show');
+
+    Route::get('/admin/enrollment-records', [EnrollmentsController::class, 'index'])->name('enrollment-records');
+    Route::get('/admin/enrollment-records/{enrollment_id}', [EnrollmentsController::class, 'show'])->name('enrollment-records.show');
 });
 
 require __DIR__.'/auth.php';

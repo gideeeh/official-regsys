@@ -6,10 +6,6 @@
     width: 13rem;
 }
 
-h1 {
-    color: red;
-}
-
 .toggle-password {
     position: absolute;
     right:0.5rem; 
@@ -88,11 +84,6 @@ tbody tr:hover {
     display: flex;
 }
 
-.student-prof-pic {
-    width: 18%;
-    border: 3px solid blue;
-}
-
 .student-info-details
 {
     padding: 0.3rem;
@@ -104,4 +95,65 @@ tbody tr:hover {
     position: absolute;
     top: 100%; 
     left: 0; 
+}
+
+.indiv-student-panel {
+    flex: 75%;
+    border: 1px solid pink;
+}
+
+.indiv-student-sidepanel {
+    flex: 25%;
+    border: 1px solid cyan;
+}
+
+.stu-info {
+    height: 15rem;
+    border: 1px solid red;
+}
+
+.stu-academic-info {
+    height: 30rem;
+    border: 1px solid violet;
+}
+
+.stu-notes {
+    height: 15rem;
+    border: 1px solid teal;
+}
+
+.stu-functions {
+    height: 25rem;
+    border: 1px solid green;
+}
+
+.modal-content {
+    max-height: 70vh; 
+    overflow-y: auto; 
+}
+
+/* Styling the scrollbar */
+.modal-content::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
+.img-frame {
+    border: 1px solid black;
+}
+
+.img-frame img {
+    width: 100%;
 }

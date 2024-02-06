@@ -34,8 +34,7 @@ class StudentRecordsController extends Controller
     
     public function show($student_id)
     {
-        $studentRecord = Student::findOrFail($student_id);
-
+        $studentRecord = Student::with(['latestEnrollment', 'latestEnrollment.program'])->findOrFail($student_id);
         return view('admin.indiv-student-record', ['student' => $studentRecord]);
     }
 }
