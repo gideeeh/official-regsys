@@ -78,8 +78,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="stu-academic-info">
-
+                    <div class="stu-academic-info mt-4">
+                        <h3 class="text-lg mb-2">Academic History</h3>
+                        <table class="min-w-full border-collapse border border-gray-300">
+                            <thead>
+                                <tr>
+                                    <th class="border border-gray-300 px-4 py-2">Subject Code</th>
+                                    <th class="border border-gray-300 px-4 py-2">Subject Name</th>
+                                    <th class="border border-gray-300 px-4 py-2">Prerequisite 1</th>
+                                    <th class="border border-gray-300 px-4 py-2">Prerequisite 2</th>
+                                    <th class="border border-gray-300 px-4 py-2">Units (Lec)</th>
+                                    <th class="border border-gray-300 px-4 py-2">Units (Lab)</th>
+                                    <th class="border border-gray-300 px-4 py-2">Total Units</th>
+                                    <th class="border border-gray-300 px-4 py-2">Final Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($student->enrollments as $enrollment)
+                                    @foreach($enrollment->enrolledSubjects as $enrolledSubject)
+                                        <tr>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->subject_code }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->subject_name }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->prerequisite1->subject_name ?? 'N/A' }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->prerequisite2->subject_name ?? 'N/A' }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->units_lec }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->units_lab }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->units_lec + $enrolledSubject->subject->units_lab }}</td>
+                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->final_grade }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </main>
                 <aside class="indiv-student-sidepanel">
