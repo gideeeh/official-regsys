@@ -50,7 +50,7 @@
                     <x-nav-link :href="route('enrollment-records')" :active="request()->routeIs('enrollment-records')">
                         {{ __('Enrollments') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <x-nav-link :href="route('registrar-functions')" :active="request()->routeIs('registrar-functions')">
                         {{ __('Functions') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">

@@ -20,10 +20,9 @@
                         <div class="stu-details w-9/12">
                             <h1>{{$student->first_name}} {{$student->middle_name}} {{$student->last_name}} {{$student->suffix}}</h1>
                             <p>Student Number: {{ $student->student_number }}</p>
-                            <p>Course: {{ $student->latestEnrollment->program->program_code }}</p>
-                            <p>Year Level: {{ $student->latestEnrollment->year_level }}</p>
-                            <p>Scholarship: {{ $student->latestEnrollment->scholarship_type }}</p>
-                            <p>Enrollment Status: {{ $student->latestEnrollment->scholarship_type }}</p>
+                            <p>Course: {{ $latestEnrollment->latestEnrollment->program->program_code }}</p>
+                            <p>Year Level: {{ $latestEnrollment->latestEnrollment->year_level }}</p>
+                            <p>Scholarship: {{ $latestEnrollment->latestEnrollment->scholarship_type }}</p>
                             <a href="#" @click="showModal = true">Personal Information</a>
                             <div x-show="showModal" @click.away="showModal = false" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
                                 <div class="relative top-20 mx-auto p-5 border w-1/2 shadow-lg rounded-md bg-white">
@@ -78,38 +77,42 @@
                             </div>
                         </div>
                     </div>
-                    <div class="stu-academic-info mt-4">
+                     <div class="stu-academic-info mt-4">
                         <h3 class="text-lg mb-2">Academic History</h3>
-                        <table class="min-w-full border-collapse border border-gray-300">
-                            <thead>
-                                <tr>
-                                    <th class="border border-gray-300 px-4 py-2">Subject Code</th>
-                                    <th class="border border-gray-300 px-4 py-2">Subject Name</th>
-                                    <th class="border border-gray-300 px-4 py-2">Prerequisite 1</th>
-                                    <th class="border border-gray-300 px-4 py-2">Prerequisite 2</th>
-                                    <th class="border border-gray-300 px-4 py-2">Units (Lec)</th>
-                                    <th class="border border-gray-300 px-4 py-2">Units (Lab)</th>
-                                    <th class="border border-gray-300 px-4 py-2">Total Units</th>
-                                    <th class="border border-gray-300 px-4 py-2">Final Grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($student->enrollments as $enrollment)
-                                    @foreach($enrollment->enrolledSubjects as $enrolledSubject)
-                                        <tr>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->subject_code }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->subject_name }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->prerequisite1->subject_name ?? 'N/A' }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->prerequisite2->subject_name ?? 'N/A' }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->units_lec }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->units_lab }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->subject->units_lec + $enrolledSubject->subject->units_lab }}</td>
-                                            <td class="border border-gray-300 px-4 py-2">{{ $enrolledSubject->final_grade }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @foreach($enrollmentDetails->groupBy('year_level') as $yearLevel => $yearDetails)
+    <h1>{{ ordinal($yearLevel) }} Year</h1>
+    @foreach($yearDetails->groupBy('term') as $term => $details)
+        <h2>Term: {{ ordinal($term) }}</h2>
+        <table class="min-w-full border-collapse border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">Subject Code</th>
+                    <th class="border border-gray-300 px-4 py-2">Subject Name</th>
+                    <th class="border border-gray-300 px-4 py-2">Prerequisite 1</th>
+                    <th class="border border-gray-300 px-4 py-2">Prerequisite 2</th>
+                    <th class="border border-gray-300 px-4 py-2">Units (Lec)</th>
+                    <th class="border border-gray-300 px-4 py-2">Units (Lab)</th>
+                    <th class="border border-gray-300 px-4 py-2">Total Units</th>
+                    <th class="border border-gray-300 px-4 py-2">Final Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($details as $detail)
+                    <tr>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->subject_code }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->subject_name }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->Prerequisite_Name_1 ?? '-' }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->Prerequisite_Name_2 ?? '-' }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->units_lec }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->units_lab }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->TOTAL }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $detail->final_grade }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endforeach
+@endforeach
                     </div>
                 </main>
                 <aside class="indiv-student-sidepanel">

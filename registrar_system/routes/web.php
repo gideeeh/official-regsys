@@ -6,6 +6,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentsController;
 use App\Http\Controllers\FacultyRecordsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegistrarFunctionsController;
 use App\Http\Controllers\StudentRecordsController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserDashboardController;
@@ -59,6 +60,8 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
 
     Route::get('/admin/enrollment-records', [EnrollmentsController::class, 'index'])->name('enrollment-records');
     Route::get('/admin/enrollment-records/{enrollment_id}', [EnrollmentsController::class, 'show'])->name('enrollment-records.show');
+
+    Route::get('/admin/functions',[RegistrarFunctionsController::class, 'index'])->name('registrar-functions');
 });
 
 require __DIR__.'/auth.php';
