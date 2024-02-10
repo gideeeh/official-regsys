@@ -59,4 +59,9 @@ class Student extends Model
     {
         return $this->hasOne(Enrollment::class, 'student_id')->latest();
     }
+
+    public function notes()
+    {
+        return $this->hasMany(StudentNote::class, 'student_id')->orderByDesc('created_at');
+    }
 }

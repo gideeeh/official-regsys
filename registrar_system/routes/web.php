@@ -7,6 +7,7 @@ use App\Http\Controllers\EnrollmentsController;
 use App\Http\Controllers\FacultyRecordsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrarFunctionsController;
+use App\Http\Controllers\StudentNoteController;
 use App\Http\Controllers\StudentRecordsController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserDashboardController;
@@ -51,6 +52,7 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
 
     Route::get('/admin/student-records', [StudentRecordsController::class, 'index'])->name('student-records');
     Route::get('/admin/student-records/{student}', [StudentRecordsController::class, 'show'])->name('student-records.show');
+    Route::post('/student/{student_id}/notes', [StudentNoteController::class, 'store'])->name('student-notes.store');
 
     Route::get('/admin/faculty-records', [FacultyRecordsController::class, 'index'])->name('faculty-records');
     Route::get('/admin/faculty-records/{faculty}', [FacultyRecordsController::class, 'show'])->name('faculty-records.show');

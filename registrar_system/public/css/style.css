@@ -105,6 +105,7 @@ tbody tr:hover {
 .indiv-student-sidepanel {
     flex: 25%;
     border: 1px solid cyan;
+    padding-left: 1rem;
 }
 
 .stu-info {
@@ -192,4 +193,22 @@ tbody tr:hover {
 
 .functioncard-thumbnail {
     width: 50%;
+}
+
+h1 {
+    font-size: 2rem; 
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
 }

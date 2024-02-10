@@ -51,7 +51,7 @@ class StudentRecordsController extends Controller
 
     public function show($student_id)
     {
-        $latestEnrollment = Student::with(['latestEnrollment', 'latestEnrollment.program'])->findOrFail($student_id);
+        $latestEnrollment = Student::with(['latestEnrollment', 'latestEnrollment.program', 'notes'])->findOrFail($student_id);
         $student = Student::findOrFail($student_id);
         // $latestYearLevel = $student->enrollments()->orderByDesc('year_level')->first()->year_level ?? null;
         $enrollmentDetails = DB::table('enrollments as e')
@@ -86,4 +86,6 @@ class StudentRecordsController extends Controller
             'enrollmentDetails' => $enrollmentDetails
         ]);
     }
+
+    
 }
