@@ -29,7 +29,7 @@
                                 ])">
                             {{ __('Records') }}
                         </x-nav-link>
-                        <div class="dropdown-content absolute bg-white shadow-md" 
+                        <div class="dropdown-content absolute bg-white shadow-md z-50 w-40" 
                             x-cloak 
                             x-show="open"
                             x-transition:enter="transition ease-out duration-100"
@@ -50,7 +50,7 @@
                     <x-nav-link :href="route('enrollment-records')" :active="request()->routeIs('enrollment-records')">
                         {{ __('Enrollments') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('registrar-functions')" :active="request()->routeIs('registrar-functions')">
+                    <x-nav-link :href="route('program-list')" :active="request()->routeIs('program-list')">
                         {{ __('Functions') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">

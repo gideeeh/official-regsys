@@ -14,7 +14,7 @@ class StudentRecordsController extends Controller
         // Define the base query with joins and aggregation
         $studentsQuery = DB::table('students as s')
             ->join('enrollments as e', 's.student_id', '=', 'e.student_id')
-            ->join('programs as p', 'e.program_id', '=', 'p.program_id')
+            ->leftJoin('programs as p', 'e.program_id', '=', 'p.program_id') // Changed to leftJoin
             ->select(
                 's.student_id',
                 's.student_number',

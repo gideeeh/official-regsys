@@ -6,11 +6,14 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EnrollmentsController;
 use App\Http\Controllers\FacultyRecordsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegistrarFunctionsController;
 use App\Http\Controllers\StudentNoteController;
 use App\Http\Controllers\StudentRecordsController;
+use App\Http\Controllers\SubjectCatalogController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserDashboardController;
+use App\Livewire\ProgramAndCourseManagement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -62,8 +65,15 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
 
     Route::get('/admin/enrollment-records', [EnrollmentsController::class, 'index'])->name('enrollment-records');
     Route::get('/admin/enrollment-records/{enrollment_id}', [EnrollmentsController::class, 'show'])->name('enrollment-records.show');
+    
+    Route::get('/admin/functions/program-course-management/program_list', [ProgramController::class, 'index'])->name('program-list');
+    Route::post('/admin/functions/program-course-management/program_list/save-program', [ProgramController::class, 'store'])->name('program-lists-new-program');    
+    Route::delete('/admin/functions/program-course-management/program_list/delete-program/{program_id}', [ProgramController::class, 'destroy'])->name('program-lists-delete-program');
+    Route::patch('/admin/functions/program-course-management/program_list/update-program/{id}', [ProgramController::class, 'update'])->name('program-lists-update-program');
 
-    Route::get('/admin/functions',[RegistrarFunctionsController::class, 'index'])->name('registrar-functions');
+    Route::get('/admin/functions/program-course-management/subject_catalog', [SubjectCatalogController::class, 'index'])->name('subject-catalog');
+    Route::post('/admin/functions/program-course-management/subject_catalog/save-subject', [SubjectCatalogController::class, 'store'])->name('subject-catalog-new-subject');    
+
 });
 
 require __DIR__.'/auth.php';
