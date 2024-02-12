@@ -1,11 +1,14 @@
 @extends('admin.functions')
 @section('content')
-    <div x-data="{ showModal: @json($errors->any()), showErrorModal: @json($errors->any()), searchPreReq1: '', filteredSubjects: [] }" @keydown.escape.window="showModal = false">
-        <h2 class="text-2xl font-semibold mb-4">Subjects Catalog</h2>
-        <button @click="showModal = true" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition ease-in-out duration-150">+ Add Subject</button>
-        
-        <!-- Add Subject Modal -->
-        
+    <div x-data="{ showModal: @json($errors->any()), showErrorModal: @json($errors->any()), searchPreReq1: '', filteredSubjects: [], searchTerm: '{{ $searchTerm ?? '' }}'}" @keydown.escape.window="showModal = false">
+        <a href="{{ route('subject-catalog') }}">
+            <h2 class="text-2xl font-semibold mb-4">Subjects Catalog</h2>
+        </a>
+        <div class="flex justify-between space-x-4">
+            <button @click="showModal = true" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition ease-in-out duration-150">+ Add Subject</button>
+            <x-search-form action="{{ route('subject-catalog') }}" placeholder="Search Subject" />
+        </div>
+        <!-- Add Subject Modal --> 
         <div x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
             <div class="modal-content bg-white p-8 rounded-lg shadow-lg overflow-auto max-w-md w-full max-h-[80vh]">
                 <h3 class="text-lg font-bold mb-4">Add New Program</h3>
@@ -56,7 +59,6 @@
                 </form>
             </div>
         </div>
-
         <!-- Subjects Table -->
         <div class="py-4">
             <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative" style="min-height: 405px;">

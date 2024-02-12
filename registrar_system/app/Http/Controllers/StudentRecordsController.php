@@ -47,7 +47,6 @@ class StudentRecordsController extends Controller
             'searchTerm' => $searchTerm
         ]);
     }
-    
 
     public function show($student_id)
     {
@@ -86,6 +85,4 @@ class StudentRecordsController extends Controller
             'enrollmentDetails' => $enrollmentDetails
         ]);
     }
-
-    
 }
