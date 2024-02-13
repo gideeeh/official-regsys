@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('acad_year', 45);
             $table->date('acad_year_start')->nullable();
             $table->date('acad_year_end')->nullable();
+            $table->date('term_1_start')->nullable();
+            $table->date('term_1_end')->nullable();
+            $table->date('term_2_start')->nullable();
+            $table->date('term_2_end')->nullable();
+            $table->date('term_3_start')->nullable();
+            $table->date('term_3_end')->nullable();
             $table->timestamps();
         });
     }

@@ -7,22 +7,20 @@
                     <!-- Navigation Links -->
                     <nav class="registrar-functions-nav">
                         <ul class="mt-4" x-data="{ open: false }">
-                            <li x-data="{ open: {{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') ? 'true' : 'false' }} }">
+                            <li x-data="{ open: {{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'true' : 'false' }} }">
                                 <div @click.prevent="open = !open" class="flex items-center cursor-pointer py-4 px-4 hover:bg-gray-200">
-                                    <span class="{{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') ? 'active-sub' : '' }}">Program and Course Management</span>
+                                    <span class="{{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'active-sub' : '' }}">Program and Course Management</span>
                                 </div>
                                 <!-- Submenu -->
                                 <ul x-show="open" class="submenu">
                                     <li><a href="{{ route('program-list') }}" class="{{ request()->routeIs('program-list') ? 'active-main' : '' }} block py-2 hover:bg-gray-200">Program Management</a></li>
                                     <li><a href="{{ route('subject-catalog') }}" class="{{ request()->routeIs('subject-catalog') ? 'active-main' : '' }} block py-2 px-6 hover:bg-gray-200">Subjects Catalog</a></li>
-                                    <li><a href="{{ route('student-records') }}" class="block py-2 px-6 hover:bg-gray-200">Academic Calendar</a></li>
+                                    <li><a href="{{ route('academic-calendar') }}" class="{{ request()->routeIs('academic-calendar') ? 'active-main' : '' }} block py-2 px-6 hover:bg-gray-200">Academic Calendar</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#" class="block py-4 px-4 hover:bg-gray-200">Document Management</a></li>
                             <li><a href="#" class="block py-4 px-4 hover:bg-gray-200">User Access Management</a></li>
                             <li><a href="#" class="block py-4 px-4 hover:bg-gray-200">InfoSystems</a></li>
                             <li><a href="#" class="block py-4 px-4 hover:bg-gray-200">Important Contacts</a></li>
-                            <li><a href="#" class="block py-4 px-4 hover:bg-gray-200">Reporting and Analysis</a></li>
                         </ul>
                     </nav>
                 </aside>
