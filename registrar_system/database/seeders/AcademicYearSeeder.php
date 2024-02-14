@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\AcademicYear;
+use App\Models\Academic_Year;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use League\Csv\Reader;
@@ -20,7 +20,7 @@ class AcademicYearSeeder extends Seeder
 
         foreach($csv->getRecords() as $offset=>$record)
         {
-            AcademicYear::create([
+            Academic_Year::create([
                 'acad_year' => $record['acad_year'],
                 'acad_year_start' => $record['acad_year_start'],
                 'acad_year_end' => $record['acad_year_end'],
