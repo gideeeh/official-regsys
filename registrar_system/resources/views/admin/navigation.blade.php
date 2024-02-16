@@ -21,7 +21,7 @@
                             :href="route('student-records')" 
                             :active="request()->routeIs([
                                 'student-records',
-                                'faculty-records',
+                                'student.add',
                                 'course-listings',
                                 'student-records.show',
                                 'faculty-records.show',

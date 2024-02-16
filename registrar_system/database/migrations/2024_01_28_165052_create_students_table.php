@@ -41,9 +41,9 @@ return new class extends Migration
             $table->string('highschool', 255)->nullable();
             $table->string('hs_yr_grad', 45)->nullable();
             $table->string('college', 255)->nullable();
-            $table->string('collge_year_ended', 45)->nullable();
-            $table->boolean('is_transferee')->default(false);
-            $table->boolean('is_irregular')->default(false);
+            $table->string('college_year_ended', 45)->nullable();
+            $table->boolean('is_transferee')->nullable();
+            $table->boolean('is_irregular')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

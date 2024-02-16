@@ -87,41 +87,46 @@ class StudentRecordsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+           'student_number' => 'required|unique:students,student_number',
            'first_name' => 'required',
            'last_name' => 'required',
            'personal_email' => 'required|unique:students,personal_email',
         ]);
 
+        $isTransferee = $request->has('is_transferee') ? true : false;
+        $isIrregular = $request->has('is_irregular') ? true : false;
+
         $new_student = new Student($validated);
+        $new_student->student_number = $request->student_number;
         $new_student->first_name = $request->first_name;
         $new_student->middle_name = $request->middle_name;
         $new_student->last_name = $request->last_name;
         $new_student->suffix = $request->suffix;
-        $new_student->sex = $new_student->sex;
-        $new_student->birthdate = $new_student->birthdate;
-        $new_student->birthplace = $new_student->birthplace;
-        $new_student->civil_status = $new_student->civil_status;
-        $new_student->nationality = $new_student->nationality;
-        $new_student->religion = $new_student->religion;
-        $new_student->phone_number = $new_student->phone_number;
-        $new_student->personal_email = $new_student->personal_email;
-        $new_student->school_email = $new_student->school_email;
-        $new_student->house_num = $new_student->house_num;
-        $new_student->street = $new_student->street;
-        $new_student->brgy = $new_student->brgy;
-        $new_student->city_municipality = $new_student->city_municipality;
-        $new_student->province = $new_student->province;
-        $new_student->zipcode = $new_student->zipcode;
-        $new_student->guardian_name = $new_student->guardian_name;
-        $new_student->guardian_contact = $new_student->guardian_contact;
-        $new_student->elementary = $new_student->elementary;
-        $new_student->elem_yr_grad = $new_student->elem_yr_grad;
-        $new_student->highschool = $new_student->highschool;
-        $new_student->hs_yr_grad = $new_student->hs_yr_grad;
-        $new_student->college = $new_student->college;
-        $new_student->college_year_ended = $new_student->college_year_ended;
-        $new_student->is_transferee = $new_student->is_transferee;
-        $new_student->is_irregular = $new_student->is_irregular;
+        $new_student->sex = $request->sex;
+        $new_student->birthdate = $request->birthdate;
+        $new_student->birthplace = $request->birthplace;
+        $new_student->civil_status = $request->civil_status;
+        $new_student->nationality = $request->nationality;
+        $new_student->religion = $request->religion;
+        $new_student->phone_number = $request->phone_number;
+        $new_student->personal_email = $request->personal_email;
+        $new_student->school_email = $request->school_email;
+        $new_student->house_num = $request->house_num;
+        $new_student->street = $request->street;
+        $new_student->brgy = $request->brgy;
+        $new_student->city_municipality = $request->city_municipality;
+        $new_student->province = $request->province;
+        $new_student->zipcode = $request->zipcode;
+        $new_student->guardian_name = $request->guardian_name;
+        $new_student->guardian_contact = $request->guardian_contact;
+        $new_student->elementary = $request->elementary;
+        $new_student->elem_yr_grad = $request->elem_yr_grad;
+        $new_student->highschool = $request->highschool;
+        $new_student->hs_yr_grad = $request->hs_yr_grad;
+        $new_student->college = $request->college;
+        $new_student->college_year_ended = $request->college_year_ended;
+        $new_student->is_transferee = $isTransferee;
+        $new_student->is_irregular = $isIrregular;
         $new_student->save();
 
         return redirect()->back()->with('success', 'Student added successfully!');

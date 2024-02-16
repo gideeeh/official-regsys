@@ -51,7 +51,7 @@ class StudentSeeder extends Seeder
                 'highschool' => $record['highschool'],
                 'hs_yr_grad' => $record['hs_yr_grad'],
                 'college' => $record['college'] ?: null,
-                'collge_year_ended' => $record['collge_year_ended'] ?: null,
+                'college_year_ended' => $record['college_year_ended'] ?: null,
                 'is_transferee' => $record['is_transferee'] === 'true',
                 'is_irregular' => $record['is_irregular'] === 'true',
             ]);

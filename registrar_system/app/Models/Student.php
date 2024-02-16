@@ -40,11 +40,26 @@ class Student extends Model
         'highschool',
         'hs_yr_grad',
         'college',
-        'collge_year_ended',
+        'college_year_ended',
         'is_transferee',
         'is_irregular',
     ];
 
+    protected $casts = [
+        'is_transferee' => 'boolean',
+        'is_irregular' => 'boolean',
+    ];
+    
+    public function getIsTransfereeAttribute($value)
+    {
+        return (bool) $value;
+    }
+    
+    public function getIsIrregularAttribute($value)
+    {
+        return (bool) $value;
+    }
+    
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class, 'student_id');

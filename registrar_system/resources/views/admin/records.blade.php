@@ -8,14 +8,14 @@
                     <nav class="registrar-functions-nav">
                         <ul class="mt-4" x-data="{ openStudents: false }">
                             <li x-data="{ openStudents: {{ request()->routeIs('student-records') || request()->routeIs('student.add') || request()->routeIs('academic-calendar') ? 'true' : 'false' }} }">
-                                <div @click.prevent="openStudents = !openStudents" class="flex items-center cursor-pointer py-4 px-4 hover:bg-gray-200">
+                                <div @click.prevent="openStudents = !openStudents" class="flex items-center cursor-pointer rounded-md py-4 px-4 hover:bg-gray-200">
                                     <span class="{{ request()->routeIs('student-records') || request()->routeIs('student.add') || request()->routeIs('academic-calendar') ? 'active-sub' : '' }}">Student Records</span>
                                 </div>
                                 <!-- Submenu -->
                                 <ul x-show="openStudents" class="submenu">
-                                    <li><a href="{{ route('student-records') }}" class="{{ request()->routeIs('student-records') ? 'active-main' : '' }} block py-2 hover:bg-gray-200">Student Records</a></li>
-                                    <li><a href="{{ route('student.add') }}" class="{{ request()->routeIs('student.add') ? 'active-main' : '' }} block py-2 px-6 hover:bg-gray-200">Add Student</a></li>
-                                    <li><a href="{{ route('academic-calendar') }}" class="{{ request()->routeIs('academic-calendar') ? 'active-main' : '' }} block py-2 px-6 hover:bg-gray-200">Academic Calendar</a></li>
+                                    <li><a href="{{ route('student-records') }}" class="{{ request()->routeIs('student-records') ? 'active-main' : '' }} block rounded-md py-4 hover:bg-gray-200">Student Records</a></li>
+                                    <li><a href="{{ route('student.add') }}" class="{{ request()->routeIs('student.add') ? 'active-main' : '' }} block rounded-md py-4 px-6 hover:bg-gray-200">Add Student</a></li>
+                                    <li><a href="{{ route('academic-calendar') }}" class="{{ request()->routeIs('academic-calendar') ? 'active-main' : '' }} block rounded-md py-4 px-6 hover:bg-gray-200">Academic Calendar</a></li>
                                 </ul>
                             </li>
                             <li><a href="#" class="block py-4 px-4 hover:bg-gray-200">Faculty Records</a></li>
