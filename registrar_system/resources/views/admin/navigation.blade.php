@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ openFunctions: false, openRecords: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <div @mouseover="open = true" @mouseleave="open = false" class="relative sm:flex sm:items-center">
+                    <div @mouseover="openRecords = true" @mouseleave="openRecords = false" class="relative sm:flex sm:items-center">
                         <x-nav-link 
                             class="sm:flex sm:items-center h-full" 
                             :href="route('student-records')" 
@@ -31,7 +31,7 @@
                         </x-nav-link>
                         <div class="dropdown-content absolute bg-white shadow-md z-50 w-40" 
                             x-cloak 
-                            x-show="open"
+                            x-show="openRecords"
                             x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="opacity-0 transform scale-90"
                             x-transition:enter-end="opacity-100 transform scale-100">
@@ -50,9 +50,42 @@
                     <x-nav-link :href="route('enrollment-records')" :active="request()->routeIs('enrollment-records')">
                         {{ __('Enrollments') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('program-list')" :active="request()->routeIs('program-list')">
+
+                    <div @mouseover="openFunctions = true" @mouseleave="openFunctions = false" class="relative sm:flex sm:items-center">
+                        <x-nav-link 
+                            class="sm:flex sm:items-center h-full" 
+                            :href="route('program-list')" 
+                            :active="request()->routeIs([
+                                'program-list',
+                                'subject-catalog',
+                                'academic-calendar',
+                                ])">
+                            {{ __('Functions') }}
+                        </x-nav-link>
+                        <div class="dropdown-content absolute bg-white shadow-md z-50 w-40" 
+                            x-cloak 
+                            x-show="openFunctions"
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="opacity-0 transform scale-90"
+                            x-transition:enter-end="opacity-100 transform scale-100">
+                            <!-- Dropdown links -->
+                            <x-dropdown-link :href="route('program-list')">
+                                        {{ __('Program & Subjects') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('program-list')">
+                                        {{ __('User Access') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('program-list')">
+                                        {{ __('InfoSystems') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('program-list')">
+                                        {{ __('Contacts') }}
+                            </x-dropdown-link>
+                        </div>
+                    </div>
+                    <!-- <x-nav-link :href="route('program-list')" :active="request()->routeIs('program-list')">
                         {{ __('Functions') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Student Appointments') }}
                     </x-nav-link>
