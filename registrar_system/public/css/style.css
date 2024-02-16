@@ -38,7 +38,6 @@
     padding: 0;
 }
 
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -148,7 +147,6 @@ tbody tr:hover {
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
-
 
 .img-frame {
     border: 1px solid black;

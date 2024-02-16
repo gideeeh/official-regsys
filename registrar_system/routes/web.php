@@ -16,6 +16,7 @@ use App\Http\Controllers\SubjectCatalogController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserDashboardController;
 use App\Livewire\ProgramAndCourseManagement;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,10 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
 
     Route::get('/admin/student-records', [StudentRecordsController::class, 'index'])->name('student-records');
     Route::get('/admin/student-records/{student}', [StudentRecordsController::class, 'show'])->name('student-records.show');
+    Route::get('/student/student-records/add_student', function () {
+        return view('admin.add-student');
+    })->name('student.add');
+    Route::post('/student/student-records/add_student', [StudentRecordsController::class, 'store'])->name('student.store');
     Route::post('/student/{student_id}/notes', [StudentNoteController::class, 'store'])->name('student-notes.store');
 
     Route::get('/admin/faculty-records', [FacultyRecordsController::class, 'index'])->name('faculty-records');
