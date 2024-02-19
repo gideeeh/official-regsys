@@ -1,6 +1,24 @@
 @extends('admin.functions')
 @section('content')
-<div x-data="{ manageProgramModal: false, currentYear: '', currentTerm: '', selectedSubjects: [] }">
+<div x-data="{
+        manageProgramModal: false,
+        currentYear: '',
+        currentTerm: '',
+        selectedSubjects: [],
+        openModalAndFetchSubjects(year, term) {
+            this.currentYear = year;
+            this.currentTerm = term;
+            this.manageProgramModal = true;
+            let programId = {{ $program->program_id }};
+            let fetchUrl = `/program/${programId}/subjects/${year}/${term}`;
+
+            axios.get(fetchUrl)
+                .then(response => {
+                    $('#assign_subject').val(response.data).trigger('change');
+                })
+                .catch(error => console.error('Error fetching subjects:', error));
+        }
+    }">
     <x-alert-message />
     <span>Program Profile:  </span>
     <h2>{{$program->program_name}}</h2>
@@ -10,21 +28,25 @@
     <span>Total Units:</span>
     <h2>Curriculum Details</h2>
     <h3>1st Year</h3>
-    <h3>Term 1</h3><span @click="manageProgramModal=true; currentYear = '1'; currentTerm = '1'">Manage</span>
-    <h3>Term 2</h3><span @click="manageProgramModal=true; currentYear = '1'; currentTerm = '2'">Manage</span>
-    <h3>Term 3</h3><span @click="manageProgramModal=true; currentYear = '1'; currentTerm = '3'">Manage</span>
+    <h3>Term 1</h3><span @click.prevent="openModalAndFetchSubjects(1, 1)">Manage</span>
+    <div>
+        <span>Display the subjects for this program for this year and term here</span>
+    </div>
+    <h3>Term 2</h3><span @click.prevent="openModalAndFetchSubjects(1, 2)">Manage</span>
+    <h3>Term 3</h3><span @click.prevent="openModalAndFetchSubjects(1, 3)">Manage</span>
     <h3>2nd Year</h3>
-    <h3>Term 1</h3><span @click="manageProgramModal=true">Manage</span>
-    <h3>Term 2</h3><span @click="manageProgramModal=true">Manage</span>
-    <h3>Term 3</h3><span @click="manageProgramModal=true">Manage</span>
+    <h3>Term 1</h3>Manage</span>
+    <h3>Term 2</h3>Manage</span>
+    <h3>Term 3</h3>Manage</span>
     <h3>3rd Year</h3>
-    <h3>Term 1</h3><span @click="manageProgramModal=true">Manage</span>
-    <h3>Term 2</h3><span @click="manageProgramModal=true">Manage</span>
-    <h3>Term 3</h3><span @click="manageProgramModal=true">Manage</span>
+    <h3>Term 1</h3>Manage</span>
+    <h3>Term 2</h3>Manage</span>
+    <h3>Term 3</h3>Manage</span>
     <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
         <option value="AL">Alabama</option>
         <option value="WY">Wyoming</option>
     </select>
+    <h1>{{$program->program_id}}</h1>
     <!-- Manage Program Modal -->
     <h1>{{$program_id}}</h1>
     <div x-show="manageProgramModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
@@ -51,9 +73,10 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
 
+<script>
+$(document).ready(function() {
+    // Initialize Select2 first
     $('#assign_subject').select2({
         width: 'resolve',
         placeholder: "Select a subject",
@@ -76,6 +99,13 @@
             cache: true
         }
     });
+
+    // Then set preselected subjects
+    let preselectedSubjects = @json($selectedSubjects ?? []);
+    $('#assign_subject').val(preselectedSubjects).trigger('change');
 });
+
+
 </script>
+
 @endsection

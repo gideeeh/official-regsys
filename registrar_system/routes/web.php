@@ -79,6 +79,7 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
     Route::get('/admin/functions/program-course-management/program_list/{program_id}', [ProgramController::class, 'show'])->name('program-list.show');
     Route::get('/admin/functions/program-course-management/program_list/{program_id}/assign_subject', [SubjectController::class, 'search'])->name('program-lists-subjects.search');
     Route::get('/admin/functions/get-subjects', [SubjectController::class, 'search'])->name('gimme-subjects');
+    Route::get('/program/{program_id}/subjects/{year}/{term}', [ProgramSubjectController::class, 'fetchSubjects'])->name('fetch.subjects');
     Route::post('/admin/functions/program-course-management/program_list/save-program', [ProgramController::class, 'store'])->name('program-lists-new-program');    
     Route::post('/admin/functions/program-course-management/program_list/{program_id}/save-assign_subject', [ProgramSubjectController::class, 'store'])->name('program-subject.save');
     Route::delete('/admin/functions/program-course-management/program_list/delete-program/{program_id}', [ProgramController::class, 'destroy'])->name('program-lists-delete-program');

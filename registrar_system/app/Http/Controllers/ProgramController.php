@@ -70,14 +70,18 @@ class ProgramController extends Controller
     {
         $program = Program::findOrFail($program_id);
         $subjects = Subject::all();
-        $program_subjects = Program_Subject::with('subject') // Ensure you have a relationship defined in Program_Subject model to Subject model
+        $program_subjects = Program_Subject::with('subject') 
                           ->where('program_id', $program_id)
                           ->get();
+        $selectedSubjectsIds = Program_Subject::where('program_id', $program_id)
+        // Add conditions for year and term if needed
+        ->pluck('subject_id')->toArray();
         return view('admin.program-profile', [
             'program' => $program,
             'subjects' => $subjects,
             'program_subjects' => $program_subjects,
             'program_id' => $program_id,
+            'selectedSubjects' => $selectedSubjectsIds,
         ]);
     }
 }
