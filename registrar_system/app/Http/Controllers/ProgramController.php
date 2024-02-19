@@ -7,6 +7,7 @@ use App\Models\Program;
 use App\Models\Program_Subject;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProgramController extends Controller
 {
@@ -70,19 +71,54 @@ class ProgramController extends Controller
     {
         $program = Program::findOrFail($program_id);
         $subjects = Subject::all();
+        
+        $totalsByYearTerm = Program_Subject::where('program_id', $program_id)
+        ->join('subjects', 'program_subjects.subject_id', '=', 'subjects.subject_id')
+        ->groupBy(['year', 'term'])
+        ->get([
+            'year',
+            'term',
+            DB::raw('SUM(subjects.units_lec) as totalLec'),
+            DB::raw('SUM(subjects.units_lab) as totalLab')
+        ])
+        ->reduce(function ($carry, $item) {
+            $carry[$item->year][$item->term] = [
+                'lec' => $item->totalLec,
+                'lab' => $item->totalLab,
+                'total' => $item->totalLec + $item->totalLab,
+            ];
+            return $carry;
+        }, []);
+        
         $program_subjects = Program_Subject::with('subject')
-                        ->where('program_id', $program_id)
+                        ->join('subjects as s', 'program_subjects.subject_id', '=', 's.subject_id')
+                        ->leftJoin('subjects as pr1', 's.prerequisite_1', '=', 'pr1.subject_id')
+                        ->leftJoin('subjects as pr2', 's.prerequisite_2', '=', 'pr2.subject_id')
+                        ->where('program_subjects.program_id', $program_id)
+                        ->select([
+                            'program_subjects.*', 
+                            'pr1.subject_name as prerequisite_1',
+                            'pr2.subject_name as prerequisite_2', 
+                        ])
                         ->get()
                         ->groupBy(['year', 'term']);
+
+
         $selectedSubjectsIds = Program_Subject::where('program_id', $program_id)
-        // Add conditions for year and term if needed
         ->pluck('subject_id')->toArray();
+
+        $total_units = Program_Subject::where('program_id', $program_id)
+                    ->join('subjects', 'program_subjects.subject_id', '=', 'subjects.subject_id')
+                    ->sum(DB::raw('subjects.units_lec + subjects.units_lab'));
+        
         return view('admin.program-profile', [
             'program' => $program,
             'subjects' => $subjects,
             'program_subjects' => $program_subjects,
             'program_id' => $program_id,
             'selectedSubjects' => $selectedSubjectsIds,
+            'total_units' => $total_units,
+            'totalsByYearTerm' => $totalsByYearTerm,
         ]);
     }
 }

@@ -76,6 +76,7 @@ Route::middleware(['auth','isAdminUser'])->group(function() {
     Route::get('/admin/enrollment-records/{enrollment_id}', [EnrollmentsController::class, 'show'])->name('enrollment-records.show');
 /* Program Management */
     Route::get('/admin/functions/program-course-management/program_list', [ProgramController::class, 'index'])->name('program-list');
+    /* Sub - Program Profile */
     Route::get('/admin/functions/program-course-management/program_list/{program_id}', [ProgramController::class, 'show'])->name('program-list.show');
     Route::get('/admin/functions/program-course-management/program_list/{program_id}/assign_subject', [SubjectController::class, 'search'])->name('program-lists-subjects.search');
     Route::get('/admin/functions/get-subjects', [SubjectController::class, 'search'])->name('gimme-subjects');

@@ -20,7 +20,11 @@ class SubjectController extends Controller
 
         $subjects = Subject::where('subject_name','like','%'.$search.'%')
                             ->orWhere('subject_code','like','%'.$search.'%')
-                            ->get(['subject_id as subject_id','subject_name as subject_name']);
+                            ->get([
+                                'subject_id as subject_id',
+                                'subject_name as subject_name',
+                                'subject_code as subject_code',
+                            ]);
         return response()->json($subjects);
     }
 }

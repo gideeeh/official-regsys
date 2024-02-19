@@ -100,7 +100,7 @@
                             <td class="border-dashed border-t border-gray-200 p-2">
                                 <div class="flex justify-end space-x-4">
                                     <button 
-                                        @click="updateModal = true; 
+                                        @click.stop="updateModal = true; 
                                                 selectedProgram = {{ $program->program_id }}; 
                                                 selectedProgramCode = '{{ $program->program_code }}'; 
                                                 selectedProgramName = '{{ $program->program_name }}'; 
@@ -110,7 +110,7 @@
                                                 selectedProgramCoordinator = '{{ $program->program_coordinator }}';
                                                 selectedTotalUnits = {{ $program->total_units }};" 
                                         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition ease-in-out duration-150">Update</button>
-                                    <button @click="deleteModal = true; selectedProgram = {{ $program->program_id }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition ease-in-out duration-150">Delete</button>
+                                    <button @click.stop="deleteModal = true; selectedProgram = {{ $program->program_id }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition ease-in-out duration-150">Delete</button>
                                 </div>
                             </td>
                         </tr>

@@ -59,6 +59,7 @@
                                 'program-list',
                                 'subject-catalog',
                                 'academic-calendar',
+                                'program-list.show',
                                 ])">
                             {{ __('Functions') }}
                         </x-nav-link>

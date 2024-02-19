@@ -7,13 +7,13 @@
                     <!-- Navigation Links -->
                     <nav class="registrar-functions-nav">
                         <ul class="mt-4" x-data="{ open: false }">
-                            <li x-data="{ open: {{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'true' : 'false' }} }">
+                            <li x-data="{ open: {{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') || request()->routeIs('program-list.show') ? 'true' : 'false' }} }">
                                 <div @click.prevent="open = !open" class="flex items-center cursor-pointer py-4 px-4 hover:bg-gray-200">
-                                    <span class="{{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'active-sub' : '' }}">Program Management</span>
+                                    <span class="{{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') || request()->routeIs('program-list.show') ? 'active-sub' : '' }}">Program Management</span>
                                 </div>
                                 <!-- Submenu -->
                                 <ul x-show="open" class="submenu">
-                                    <li><a href="{{ route('program-list') }}" class="{{ request()->routeIs('program-list') ? 'active-main' : '' }} block py-2 hover:bg-gray-200">Program Management</a></li>
+                                    <li><a href="{{ route('program-list') }}" class="{{ request()->routeIs('program-list') || request()->routeIs('program-list.show') ? 'active-main' : '' }} block py-2 hover:bg-gray-200">Program Management</a></li>
                                     <li><a href="{{ route('subject-catalog') }}" class="{{ request()->routeIs('subject-catalog') ? 'active-main' : '' }} block py-2 px-6 hover:bg-gray-200">Subjects Catalog</a></li>
                                     <li><a href="{{ route('academic-calendar') }}" class="{{ request()->routeIs('academic-calendar') ? 'active-main' : '' }} block py-2 px-6 hover:bg-gray-200">Academic Calendar</a></li>
                                 </ul>

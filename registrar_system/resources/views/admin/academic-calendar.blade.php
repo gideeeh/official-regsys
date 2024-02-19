@@ -7,7 +7,7 @@
     <button @click="showModal = true"class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition ease-in-out duration-150">+ Add Event</button>    
     <button @click="showSetAcadYearTerm = true"class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition ease-in-out duration-150">Set Acad Year</button>    
     <div id='calendar' class="py-4"></div>
-    <div x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
+    <div x-cloak x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
         <div class="modal-content bg-white p-8 rounded-lg shadow-lg overflow-auto max-w-md w-full max-h-[80vh]">
             <h3 class="text-lg font-bold mb-4">Add New Event</h3>
             <form id="addEventForm" class="space-y-4">
@@ -22,7 +22,7 @@
             </form>
         </div>
     </div>
-    <div x-show="showSetAcadYearTerm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
+    <div x-cloak x-show="showSetAcadYearTerm" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
         <div class="modal-content bg-white p-8 rounded-lg shadow-lg overflow-auto max-w-md w-full max-h-[80vh]">
             <h3 class="text-lg font-bold mb-4">Set School Year and Term</h3>
             <form action="{{ route('acad-year-set') }}" method="POST" class="space-y-4">
