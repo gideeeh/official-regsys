@@ -248,3 +248,12 @@ h3 {
     -ms-user-select: none;
     user-select: none;
 }
+
+.subject-select {
+    margin-top: 0.25rem;
+    display: block;
+    width: 75%;
+    border: 1px solid #d1d5db; 
+    border-radius: 0.375rem; 
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}

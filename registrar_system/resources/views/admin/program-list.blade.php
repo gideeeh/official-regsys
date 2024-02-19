@@ -90,7 +90,7 @@
                     </thead>
                     <tbody>
                         @foreach ($programs as $program)
-                        <tr>
+                        <tr class="border-b hover:bg-gray-100 cursor-pointer" x-data="{}" @click="window.location.href='{{ route('program-list.show', $program->program_id) }}'">
                             <td class="border-dashed border-t border-gray-200 p-2">{{ $program->program_code }}</td>
                             <td class="border-dashed border-t border-gray-200 p-2">{{ $program->program_name }}</td>
                             <td class="border-dashed border-t border-gray-200 p-2">{{ $program->degree_type }}</td>

@@ -1,10 +1,10 @@
 @extends('admin.functions')
 @section('content')
     <div x-data="{ showModal: @json($errors->any()), showErrorModal: @json($errors->any()), searchPreReq1: '', filteredSubjects: [], searchTerm: '{{ $searchTerm ?? '' }}'}" @keydown.escape.window="showModal = false">
-        <a href="{{ route('subject-catalog') }}">
-            <h2 class="text-2xl font-semibold mb-4">Subjects Catalog</h2>
+        <a href="{{ route('subject-catalog') }}" class="font-semibold text-xl text-gray-800 leading-tight no-underline hover:underline">
+            <span class="text-2xl font-semibold mb-4">Subjects Catalog</span>
         </a>
-        <div class="flex justify-between space-x-4">
+        <div class="flex justify-between space-x-4 mt-6">
             <button @click="showModal = true" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition ease-in-out duration-150">+ Add Subject</button>
             <x-search-form action="{{ route('subject-catalog') }}" placeholder="Search Subject" />
         </div>
@@ -77,7 +77,7 @@
                     </thead>
                     <tbody>
                         @foreach ($subjects as $subject)
-                        <tr>
+                        <tr class="cursor-pointer">
                             <td class="border-dashed border-t border-gray-200 p-2">{{ $subject->subject_code }}</td>
                             <td class="border-dashed border-t border-gray-200 p-2">{{ $subject->subject_name }}</td>
                             <td class="border-dashed border-t border-gray-200 p-2">{{ $subject->units_lec }}</td>

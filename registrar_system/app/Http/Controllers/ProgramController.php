@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Program;
+use App\Models\Program_Subject;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller
@@ -62,5 +64,20 @@ class ProgramController extends Controller
         } else {
             return redirect()->back()->with('error', 'Program not found!');
         }
+    }
+
+    public function show($program_id)
+    {
+        $program = Program::findOrFail($program_id);
+        $subjects = Subject::all();
+        $program_subjects = Program_Subject::with('subject') // Ensure you have a relationship defined in Program_Subject model to Subject model
+                          ->where('program_id', $program_id)
+                          ->get();
+        return view('admin.program-profile', [
+            'program' => $program,
+            'subjects' => $subjects,
+            'program_subjects' => $program_subjects,
+            'program_id' => $program_id,
+        ]);
     }
 }

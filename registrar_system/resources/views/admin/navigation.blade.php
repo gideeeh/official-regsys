@@ -70,7 +70,7 @@
                             x-transition:enter-end="opacity-100 transform scale-100">
                             <!-- Dropdown links -->
                             <x-dropdown-link :href="route('program-list')">
-                                        {{ __('Program & Subjects') }}
+                                        {{ __('Program Management') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('program-list')">
                                         {{ __('User Access') }}
@@ -83,9 +83,6 @@
                             </x-dropdown-link>
                         </div>
                     </div>
-                    <!-- <x-nav-link :href="route('program-list')" :active="request()->routeIs('program-list')">
-                        {{ __('Functions') }}
-                    </x-nav-link> -->
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Student Appointments') }}
                     </x-nav-link>

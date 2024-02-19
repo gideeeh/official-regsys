@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Program_Semester_Subject extends Model
+class Program_Subject extends Model
 {
     use HasFactory;
 
-    protected $table = 'program_semester_subjects';
+    protected $table = 'program_subjects';
     protected $primaryKey = 'id';
     protected $fillable = [
         'program_id',
+        'year',
         'term',
         'subject_id',
-        'year_created',
-        'version',
     ];
 
     public function subject()

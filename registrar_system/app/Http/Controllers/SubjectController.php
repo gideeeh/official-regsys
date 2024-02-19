@@ -13,4 +13,14 @@ class SubjectController extends Controller
             
         return view('subjects', ['subjects' => $subjects]);
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('q');
+
+        $subjects = Subject::where('subject_name','like','%'.$search.'%')
+                            ->orWhere('subject_code','like','%'.$search.'%')
+                            ->get(['subject_id as subject_id','subject_name as subject_name']);
+        return response()->json($subjects);
+    }
 }

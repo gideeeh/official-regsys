@@ -9,7 +9,7 @@
                         <ul class="mt-4" x-data="{ open: false }">
                             <li x-data="{ open: {{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'true' : 'false' }} }">
                                 <div @click.prevent="open = !open" class="flex items-center cursor-pointer py-4 px-4 hover:bg-gray-200">
-                                    <span class="{{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'active-sub' : '' }}">Program and Course Management</span>
+                                    <span class="{{ request()->routeIs('program-list') || request()->routeIs('subject-catalog') || request()->routeIs('academic-calendar') ? 'active-sub' : '' }}">Program Management</span>
                                 </div>
                                 <!-- Submenu -->
                                 <ul x-show="open" class="submenu">

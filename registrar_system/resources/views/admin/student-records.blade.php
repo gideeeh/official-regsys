@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                     @foreach ($students as $student)
-                    <tr class="border-b hover:bg-gray-100" x-data="{}" @click="window.location.href='{{ route('student-records.show', $student->student_id) }}'" style="cursor: pointer;">
+                    <tr class="border-b hover:bg-gray-100 cursor-pointer" x-data="{}" @click="window.location.href='{{ route('student-records.show', $student->student_id) }}'">
                         <td class="border-dashed border-t border-gray-200 p-2 py-4">{{$student->student_number}}</td>
                         <td class="border-dashed border-t border-gray-200 p-2 py-4">{{$student->first_name}} {{ substr($student->middle_name, 0, 1)}}.  {{$student->last_name.' '.$student->suffix}}</td>
                         <td class="border-dashed border-t border-gray-200 p-2 py-4">{{$student->program_code ?? 'Not Available' }}</td>
