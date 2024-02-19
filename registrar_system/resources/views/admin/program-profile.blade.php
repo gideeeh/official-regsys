@@ -27,26 +27,26 @@
     <span>Total Enrolled Students:</span>
     <span>Total Units:</span>
     <h2>Curriculum Details</h2>
-    <h3>1st Year</h3>
-    <h3>Term 1</h3><span @click.prevent="openModalAndFetchSubjects(1, 1)">Manage</span>
-    <div>
-        <span>Display the subjects for this program for this year and term here</span>
-    </div>
-    <h3>Term 2</h3><span @click.prevent="openModalAndFetchSubjects(1, 2)">Manage</span>
-    <h3>Term 3</h3><span @click.prevent="openModalAndFetchSubjects(1, 3)">Manage</span>
-    <h3>2nd Year</h3>
-    <h3>Term 1</h3>Manage</span>
-    <h3>Term 2</h3>Manage</span>
-    <h3>Term 3</h3>Manage</span>
-    <h3>3rd Year</h3>
-    <h3>Term 1</h3>Manage</span>
-    <h3>Term 2</h3>Manage</span>
-    <h3>Term 3</h3>Manage</span>
-    <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
-        <option value="AL">Alabama</option>
-        <option value="WY">Wyoming</option>
-    </select>
-    <h1>{{$program->program_id}}</h1>
+    @foreach (['1st Year', '2nd Year', '3rd Year'] as $yearKey => $yearValue)
+        <h3>{{ $yearValue }}</h3>
+        @foreach (['Term 1', 'Term 2', 'Term 3'] as $termKey => $termValue)
+            <h3>{{ $termValue }}</h3>
+            <span @click.prevent="openModalAndFetchSubjects({{ $yearKey + 1 }}, {{ $termKey + 1 }})">Manage</span>
+            <div>
+                @php
+                    $year = $yearKey + 1;
+                    $term = $termKey + 1;
+                @endphp
+                @if(isset($program_subjects[$year][$term]))
+                    @foreach($program_subjects[$year][$term] as $program_subject)
+                        <span>{{ $program_subject->subject->subject_name }}</span>,
+                    @endforeach
+                @else
+                    <span>No subjects for this program for this year and term.</span>
+                @endif
+            </div>
+        @endforeach
+    @endforeach
     <!-- Manage Program Modal -->
     <h1>{{$program_id}}</h1>
     <div x-show="manageProgramModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">

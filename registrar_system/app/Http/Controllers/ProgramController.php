@@ -70,9 +70,10 @@ class ProgramController extends Controller
     {
         $program = Program::findOrFail($program_id);
         $subjects = Subject::all();
-        $program_subjects = Program_Subject::with('subject') 
-                          ->where('program_id', $program_id)
-                          ->get();
+        $program_subjects = Program_Subject::with('subject')
+                        ->where('program_id', $program_id)
+                        ->get()
+                        ->groupBy(['year', 'term']);
         $selectedSubjectsIds = Program_Subject::where('program_id', $program_id)
         // Add conditions for year and term if needed
         ->pluck('subject_id')->toArray();
