@@ -19,4 +19,3 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }} 
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          git-ftp-args: --insecure # Use if your FTP server does not support FTPS/FTPES
