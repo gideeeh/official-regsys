@@ -15,8 +15,8 @@ jobs:
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          ftp-server: ftp.infoboard.tech # Replace with your FTP server
-          ftp-username: ${{ secrets.FTP_USERNAME }} 
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          server: ftp.infoboard.tech # Replace with your FTP server
+          username: ${{ secrets.FTP_USERNAME }} 
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
           git-ftp-args: --insecure # Use if your FTP server does not support FTPS/FTPES
